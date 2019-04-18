@@ -1,13 +1,17 @@
 <template>
-  <div class="image-container">
+  <figure class="image-container png-container">
     <img :src="path" :alt="alt" :title="title"/>
-  </div>
+    <figcaption v-if="fileName">{{fileName}}</figcaption>
+  </figure>
 </template>
 
 <script>
 export default {
   name: 'image-container',
   props: {
+    originalPath: {
+      type: String,
+    },
     path: {
       type: String,
     },
@@ -22,8 +26,11 @@ export default {
   },
   computed: {
     fileName() {
-      const splitPath = this.path.split('/');
-      const fileName = splitPath[splitPath.length - 1];
+      if (!this.originalPath) {
+        return undefined;
+      }
+      const splitPath = this.originalPath.split('/');
+      const fileName = splitPath[splitPath.length - 1].split('.')[0];
       return fileName;
     },
   },
@@ -31,15 +38,6 @@ export default {
 </script>
 
 <style>
-.image-container {
-  width: 120px;
-  min-height: 120px;
-  padding: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border: 1px solid blue;
-}
-
 img {
   display: block;
 }
