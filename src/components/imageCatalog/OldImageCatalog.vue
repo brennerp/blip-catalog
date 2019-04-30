@@ -45,20 +45,11 @@ function importAll(files) {
   );
 }
 
-const importSvgs = require.context('../../assets/img/organized', true, /\.svg$/);
-console.log(importSvgs.keys());
-
-const test = importAll(importSvgs);
-console.log(test);
-
-const svgFiles = importAll(importSvgs);
-const pngFiles = importAll(require.context('../../assets/img/png', true, /\.png$/));
-
-
-// const gifFiles = importAll(require.context('../../assets/img/gif', true, /\.gif$/));
+const svgFiles = importAll(require.context('../../assets/img/organized-old', true, /\.svg$/));
+const pngFiles = importAll(require.context('../../assets/img/organized-old', true, /\.png$/));
 
 export default {
-  name: 'image-catalog',
+  name: 'old-image-catalog',
   components: {
     ImageContainer,
     SvgContainer,
@@ -67,7 +58,6 @@ export default {
     return {
       pngArray: pngFiles,
       svgArray: svgFiles,
-      // gifs: gifFiles,
     };
   },
   computed: {
@@ -82,31 +72,4 @@ export default {
 </script>
 
 <style>
-.image-container {
-  position: relative;
-  width: 120px;
-  min-height: 120px;
-  padding: 15px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #0cc8cc;
-  border-radius: 10px;
-}
-
-.image-container figcaption {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: block;
-  width: 100%;
-  text-align: center;
-  background-color: #0cc8cc;
-  font-size: 14px;
-}
-
-.image-browser {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 </style>
