@@ -3,7 +3,7 @@ import sys
 import re
 import ntpath
 
-path='try/*.svg'
+path='all/*.svg'
 svgFiles = glob.glob(path)
 
 defs = open("defs.svg", "w")
