@@ -1,10 +1,22 @@
 <template>
   <div class="image-catalog">
-    <div id="svg-browser">
-      <p>SVG files</p>
+    <div id="desk-svg-browser">
+      <p>Desk SVG files</p>
       <div id="svg-browser" class="image-browser">
         <svg-container
-          v-for="(svg, index) in svgs"
+          v-for="(svg, index) in $options.svgLibrary.desk"
+          v-once
+          :key="index"
+          :originalPath="svg.originalPath"
+          :path="svg.path"/>
+      </div>
+    </div>
+
+    <div id="portal-svg-browser">
+      <p>Portal SVG files</p>
+      <div id="svg-browser" class="image-browser">
+        <svg-container
+          v-for="(svg, index) in $options.svgLibrary.portal"
           v-once
           :key="index"
           :originalPath="svg.originalPath"
@@ -31,22 +43,24 @@ function importAll(files) {
   );
 }
 
-const svgFiles = importAll(require.context('../../assets/img/organized-new', true, /\.svg$/));
+const deskSvgFiles = importAll(require.context('../../assets/img/organized-new/desk/all', true, /\.svg$/));
+const portalSvgFiles = importAll(require.context('../../assets/img/organized-new/portal/all', true, /\.svg$/));
+
+
+const svgLibrary = {
+  desk: [
+    ...new Set(deskSvgFiles),
+  ],
+  portal: [
+    ...new Set(portalSvgFiles),
+  ],
+};
 
 export default {
   name: 'new-image-catalog',
+  svgLibrary,
   components: {
     SvgContainer,
-  },
-  data() {
-    return {
-      svgArray: svgFiles,
-    };
-  },
-  computed: {
-    svgs() {
-      return [...new Set(this.svgArray)];
-    },
   },
 };
 </script>
