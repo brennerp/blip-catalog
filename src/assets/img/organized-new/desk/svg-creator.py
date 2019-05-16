@@ -3,7 +3,7 @@ import re
 import ntpath
 import os
 
-path='all/'
+path='3-compressed/'
 defs = open("defs.svg", "w")
 
 defs.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n')
