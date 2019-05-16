@@ -43,7 +43,7 @@ function importAll(files) {
   );
 }
 
-const deskSvgFiles = importAll(require.context('../../assets/img/organized-new/desk/all', true, /\.svg$/));
+const deskSvgFiles = importAll(require.context('../../assets/img/organized-new/desk/2-clean', true, /\.svg$/));
 const portalSvgFiles = importAll(require.context('../../assets/img/organized-new/portal/all', true, /\.svg$/));
 
 
